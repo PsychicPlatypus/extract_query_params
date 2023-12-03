@@ -25,8 +25,7 @@ defmodule ExtractQueryParams.MixProject do
   defp package() do
     [
       name: "extract_query_params",
-      files: ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE*
-                license* CHANGELOG* changelog* src),
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/PsychicPlatypus/extract_query_params"}
     ]
@@ -35,7 +34,8 @@ defmodule ExtractQueryParams.MixProject do
   defp deps do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 end
