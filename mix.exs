@@ -8,9 +8,15 @@ defmodule ExtractQueryParams.MixProject do
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      source_url: "https://github.com/PsychicPlatypus/extract_query_params",
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      docs: [
+        extras: ["README.md"],
+        authors: ["Dzenis Madzovic"],
+        source_ref: "main"
+      ]
     ]
   end
 
