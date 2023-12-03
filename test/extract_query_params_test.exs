@@ -28,4 +28,10 @@ defmodule ExtractQueryParamsTest do
              } = ExtractQueryParams.to_variables([foo: "foo", bar: "bar", baz: "baz"], "OR")
     end
   end
+
+  describe "to_variables!/2" do
+    test "should return empty string and empty list if no keywords are passed" do
+      assert {"", [""]} = ExtractQueryParams.to_variables!([], "AND")
+    end
+  end
 end

@@ -1,6 +1,6 @@
 defmodule ExtractQueryParams do
   @moduledoc """
-  Documentation for `ExtractQueryParams`.
+  Module for extracting query parameters from a list of keywords.
   """
 
   @supported_logical_operators [
@@ -18,12 +18,14 @@ defmodule ExtractQueryParams do
       {"foo = ?", ["bar"]}
 
   """
-  @spec to_variables(list(keyword())) :: {binary(), any}
-  def to_variables([]), do: {"", ""}
+  @spec to_variables(list(keyword())) :: {binary(), list(any)}
+  def to_variables([]), do: {"", [""]}
 
   def to_variables(keywords), do: to_variables(keywords, "AND")
 
   @spec to_variables(list(keyword()), binary()) :: {binary(), any()}
+  def to_variables([], _), do: {"", [""]}
+
   def to_variables(keywords, logical_operator)
       when logical_operator in @supported_logical_operators do
     keywords_to_query_map(keywords)
@@ -39,6 +41,10 @@ defmodule ExtractQueryParams do
     end
   end
 
+  def to_variables(_, _) do
+    {"", [""]}
+  end
+
   @doc """
   Turns list of keywords to SQL statement variables, connected with an operator (defaults to "AND").
   Raises an ArgumentError if the logical operator is not supported.
@@ -52,7 +58,7 @@ defmodule ExtractQueryParams do
       ** (ArgumentError) logical operator "UNSUPPORTED" is not supported.
 
   """
-  @spec to_variables!(list(keyword()), binary()) :: {binary(), any()}
+  @spec to_variables!(list(keyword()), binary()) :: {binary(), list(any())}
   def to_variables!(keywords, logical_operator)
       when logical_operator in @supported_logical_operators do
     to_variables(keywords, logical_operator)
@@ -77,8 +83,8 @@ defmodule ExtractQueryParams do
         %{query: [], variables: []},
         fn {query, variable}, %{query: query_, variables: variables_} ->
           %{
-            query: List.insert_at(query_, 0, query),
-            variables: List.insert_at(variables_, 0, variable)
+            query: [query | query_],
+            variables: [variable | variables_]
           }
         end
       )
