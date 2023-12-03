@@ -4,8 +4,7 @@ Converts keyword list to query string with values extracted from the keyword lis
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `extract_query_params` to your list of dependencies in `mix.exs`:
+Add `extract_query_params` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,6 +14,4 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/extract_query_params>.
+Documentation can be found at [https://hexdocs.pm/extract_query_params](https://hexdocs.pm/extract_query_params).
