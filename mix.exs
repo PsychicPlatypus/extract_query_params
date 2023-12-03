@@ -9,6 +9,7 @@ defmodule ExtractQueryParams.MixProject do
       start_permanent: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       description: description(),
+      package: package(),
       deps: deps()
     ]
   end
